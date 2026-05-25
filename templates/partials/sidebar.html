@@ -1,0 +1,60 @@
+<nav id="sidebar" class="position-fixed top-0 bottom-0 start-0 d-flex flex-column justify-content-between">
+            <div>
+                <div class="p-3 d-flex align-items-center justify-content-center justify-content-lg-start border-bottom border-secondary text-white">
+                    <i class="bi bi-cpu-fill fs-3 text-primary me-2"></i>
+                    <span class="fs-5 fw-bold sidebar-brand-text">AppPanel</span>
+                </div>
+
+                <div class="nav flex-column mt-3">
+                    <a 
+                    href="{% url 'home' %}"
+    class="nav-link"
+    hx-get="{% url 'home' %}"
+    hx-target="#dash-content"
+    hx-swap="innerHTML"
+    hx-push-url="true">
+                        <i class="bi bi-speedometer2"></i>
+                        <span class="link-text">Overview</span>
+                    </a>
+                    
+                    <a href="#" class="nav-link" 
+                       hx-get="/dashboard/analytics/" hx-target="#dash-content" hx-swap="innerHTML">
+                        <i class="bi bi-graph-up"></i>
+                        <span class="link-text">Analytics</span>
+                    </a>
+                    <a 
+    href="{% url 'csp_data_ingestion' %}"
+    class="nav-link"
+    hx-get="{% url 'csp_data_ingestion' %}"
+    hx-target="#dash-content"
+    hx-swap="innerHTML"
+    hx-push-url="true"
+>
+   <i class="bi bi-file-earmark-arrow-up-fill"></i>
+    <span class="link-text">Upload</span>
+</a>
+                     <a href="#" class="nav-link" 
+                       hx-get="/dashboard/analytics/" hx-target="#dash-content" hx-swap="innerHTML">
+                        <i class="bi bi-graph-up"></i>
+                        <span class="link-text">Analytics</span>
+                    </a>
+                    
+                    <a href="#" class="nav-link" 
+                       hx-get="/dashboard/users/" hx-target="#dash-content" hx-swap="innerHTML">
+                        <i class="bi bi-people"></i>
+                        <span class="link-text">Users</span>
+                    </a>
+                    
+                    <a href="#" class="nav-link" 
+                       hx-get="/dashboard/settings/" hx-target="#dash-content" hx-swap="innerHTML">
+                        <i class="bi bi-gear"></i>
+                        <span class="link-text">Settings</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="p-3 border-top border-secondary text-white text-center">
+                <i class="bi bi-person-circle fs-4"></i>
+                <span class="link-text ms-2">Admin Profile</span>
+            </div>
+        </nav>

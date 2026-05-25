@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}portal-Cspdemo{% endblock title %}
+{% block content %}
+
+            
+            
+                <h2>Overview Dashboard</h2>
+                <p>This is the default view. Click sidebar links to swap components instantly via HTMX without full page reloads.</p>
+                
+                <div class="row g-3 mt-2">
+                    <div class="col-12 col-md-4">
+                        <div class="card p-3 shadow-sm border-0">
+                            <h6 class="text-muted">Total Sales</h6>
+                            <h3>$24,500</h3>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="card p-3 shadow-sm border-0">
+                            <h6 class="text-muted">Active Sessions</h6>
+                            <h3>1,204</h3>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="card p-3 shadow-sm border-0">
+                            <h6 class="text-muted">Task Completion</h6>
+                            <h3>87%</h3>
+                        </div>
+                    </div>
+                </div>
+            
+
+
+{% endblock content %}

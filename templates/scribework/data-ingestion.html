@@ -1,0 +1,61 @@
+{% block title %}Upload Data - Portal-Cspdemo{% endblock title %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="row justify-content-center align-items-center" style="min-height: 70vh;">
+        <div class="col-12 col-md-8 col-lg-6">
+            
+            <div class="card shadow border-0 p-4 p-md-5 bg-white rounded-4">
+                
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold text-dark">Data Upload Portal <i class="bi bi-file-earmark-arrow-up-fill"></i></h2>
+                    <p class="text-muted small">
+                        Select your files and configurations below.
+                    </p>
+                    <hr class="w-25 mx-auto text-primary border-2 opacity-75">
+                </div>
+                
+                <form method="POST" enctype="multipart/form-data" class="needs-validation">
+                    {% csrf_token %}
+                    
+                    <div class="mb-4 text-start">
+                        {% if form.errors %}
+                            <div class="alert alert-danger p-2 small">
+                                Please correct the errors below.
+                            </div>
+                        {% endif %}
+                        
+                        {% for field in form %}
+                            <div class="mb-3">
+                                <label for="{{ field.id_for_label }}" class="form-label fw-semibold text-secondary small">
+                                    {{ field.label }}
+                                </label>
+                                
+                                {% if field.field.widget.input_type == "file" %}
+                                    <div class="input-group">
+                                        <input type="file" name="{{ field.html_name }}" id="{{ field.id_for_label }}" class="form-control" {% if field.field.required %}required{% endif %}>
+                                    </div>
+                                {% else %}
+                                    <div class="input-group">
+                                        <input type="{{ field.field.widget.input_type|default:'text' }}" name="{{ field.html_name }}" id="{{ field.id_for_label }}" class="form-control" {% if field.value %}value="{{ field.value }}"{% endif %} {% if field.field.required %}required{% endif %}>
+                                    </div>
+                                {% endif %}
+                                
+                                {% if field.help_text %}
+                                    <div class="form-text text-muted x-small">{{ field.help_text }}</div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg shadow-sm rounded-3">
+                            <i class="bi bi-cloud-arrow-up-fill me-2"></i>Process ETL Load
+                        </button>
+                    </div>
+                </form>
+                
+            </div> </div>
+    </div>
+</div>
+{% endblock content %}
