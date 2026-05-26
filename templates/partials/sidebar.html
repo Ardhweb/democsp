@@ -10,10 +10,11 @@
                     href="{% url 'home' %}"
     class="nav-link active"
     hx-get="{% url 'home' %}"
+     hx-push-url="true"
     hx-target="#dash-content"
       hx-trigger="load"
     hx-swap="innerHTML"
-    hx-push-url="true">
+   >
                         <i class="bi bi-speedometer2"></i>
                         <span class="link-text">Overview</span>
                     </a>
@@ -22,10 +23,11 @@
                     <a 
     href="{% url 'csp_data_ingestion' %}"
     class="nav-link"
+     hx-push-url="true"
     hx-get="{% url 'csp_data_ingestion' %}"
     hx-target="#dash-content"
-    hx-swap="innerHTML"
-    hx-push-url="true"
+    hx-bounce="innerHTML" 
+    
 >
    <i class="bi bi-file-earmark-arrow-up-fill"></i>
     <span class="link-text">Upload</span>

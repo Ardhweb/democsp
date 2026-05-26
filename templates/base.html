@@ -78,7 +78,9 @@
 
     document.addEventListener("DOMContentLoaded", initSidebar);
     document.body.addEventListener("htmx:afterOnLoad", initSidebar);
-
+ document.body.addEventListener('htmx:afterSwap', function(evt) {
+    sessionStorage.setItem('cached-page-content', document.body.innerHTML);
+  });
 
     
 </script>
