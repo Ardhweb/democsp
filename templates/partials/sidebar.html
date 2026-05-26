@@ -8,20 +8,17 @@
                 <div class="nav flex-column mt-3">
                     <a 
                     href="{% url 'home' %}"
-    class="nav-link"
+    class="nav-link active"
     hx-get="{% url 'home' %}"
     hx-target="#dash-content"
+      hx-trigger="load"
     hx-swap="innerHTML"
     hx-push-url="true">
                         <i class="bi bi-speedometer2"></i>
                         <span class="link-text">Overview</span>
                     </a>
                     
-                    <a href="#" class="nav-link" 
-                       hx-get="/dashboard/analytics/" hx-target="#dash-content" hx-swap="innerHTML">
-                        <i class="bi bi-graph-up"></i>
-                        <span class="link-text">Analytics</span>
-                    </a>
+                   
                     <a 
     href="{% url 'csp_data_ingestion' %}"
     class="nav-link"
@@ -33,11 +30,7 @@
    <i class="bi bi-file-earmark-arrow-up-fill"></i>
     <span class="link-text">Upload</span>
 </a>
-                     <a href="#" class="nav-link" 
-                       hx-get="/dashboard/analytics/" hx-target="#dash-content" hx-swap="innerHTML">
-                        <i class="bi bi-graph-up"></i>
-                        <span class="link-text">Analytics</span>
-                    </a>
+                     
                     
                     <a href="#" class="nav-link" 
                        hx-get="/dashboard/users/" hx-target="#dash-content" hx-swap="innerHTML">
