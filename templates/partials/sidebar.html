@@ -8,12 +8,8 @@
                 <div class="nav flex-column mt-3">
                     <a 
                     href="{% url 'home' %}"
-    class="nav-link active"
-    hx-get="{% url 'home' %}"
-     hx-push-url="true"
-    hx-target="#dash-content"
-      hx-trigger="load"
-    hx-swap="innerHTML"
+    class="nav-link {% if request.path == '/home' %}active{% endif %}"
+    
    >
                         <i class="bi bi-speedometer2"></i>
                         <span class="link-text">Overview</span>
@@ -22,11 +18,8 @@
                    
                     <a 
     href="{% url 'csp_data_ingestion' %}"
-    class="nav-link"
-     hx-push-url="true"
-    hx-get="{% url 'csp_data_ingestion' %}"
-    hx-target="#dash-content"
-    hx-bounce="innerHTML" 
+    class="nav-link {% if request.path == '/csp-commission-data' %}active{% endif %}"
+    
     
 >
    <i class="bi bi-file-earmark-arrow-up-fill"></i>

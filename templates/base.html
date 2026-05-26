@@ -26,21 +26,35 @@
   </head>
   <body>
 
-{% if request.META.HTTP_HX_REQUEST %}
 
-   
+{% include "partials/sidebar.html" %}
+
+<div class="d-flex">
     
-    {% block content %}{% endblock content %}
 
-{% else %}
+    <div  id="main-wrapper" class="min-vh-100 d-flex flex-column w-100">
+        <header class="navbar navbar-expand navbar-light bg-white border-bottom px-4 py-2 sticky-top">
+            <button class="btn btn-light border-0" id="sidebar-toggle">
+                <i class="bi bi-list fs-4"></i>
+            </button>
+            <div class="ms-auto">
+                <span class="text-muted">Welcome, User</span>
+            </div>
+        </header>
 
-    {% with dynamic_layout=layout_style|default:"layouts/dashboard_layout.html" %}
-        {% include dynamic_layout %}
-    {% endwith %}
+        <main  id="dash-content" class="container-fluid p-4">
+            
+            
+                {% block content %}{% endblock content %}
+          
+            
+        </main>
+    </div>
+</div>
 
-{% endif %}
 
 <script>
+
     // 1. Load saved sidebar state IMMEDIATELY to prevent visual flashing
     if (localStorage.getItem("sidebar-state") === "collapsed") {
         document.body.classList.add("sidebar-collapsed");
@@ -77,10 +91,10 @@
     }
 
     document.addEventListener("DOMContentLoaded", initSidebar);
-    document.body.addEventListener("htmx:afterOnLoad", initSidebar);
- document.body.addEventListener('htmx:afterSwap', function(evt) {
-    sessionStorage.setItem('cached-page-content', document.body.innerHTML);
-  });
+    //document.body.addEventListener("htmx:afterOnLoad", initSidebar);
+ //document.body.addEventListener('htmx:afterSwap', function(evt) {
+ //   sessionStorage.setItem('cached-page-content', document.body.innerHTML);
+ // });
 
     
 </script>

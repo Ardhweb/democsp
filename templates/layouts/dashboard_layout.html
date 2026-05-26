@@ -1,7 +1,7 @@
 <div class="d-flex">
     {% include "partials/sidebar.html" %}
 
-    <div id="main-wrapper" class="min-vh-100 d-flex flex-column w-100">
+    <div  id="main-wrapper" class="min-vh-100 d-flex flex-column w-100">
         <header class="navbar navbar-expand navbar-light bg-white border-bottom px-4 py-2 sticky-top">
             <button class="btn btn-light border-0" id="sidebar-toggle">
                 <i class="bi bi-list fs-4"></i>
@@ -11,13 +11,11 @@
             </div>
         </header>
 
-        <main id="dash-content" class="container-fluid p-4">
+        <main  id="dash-content" class="container-fluid p-4">
             
-            {% if page_content %}
-                {{ page_content }}
-            {% else %}
+            
                 {% block content %}{% endblock content %}
-            {% endif %}
+          
             
         </main>
     </div>
