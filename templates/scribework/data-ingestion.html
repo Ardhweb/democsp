@@ -2,6 +2,8 @@
 {% block title %}Upload Data - Portal-Cspdemo{% endblock title %}
 
 {% block content %}
+
+
 <div class="container-fluid py-4">
     <div class="row justify-content-center align-items-center" style="min-height: 70vh;">
         <div class="col-12 col-md-8 col-lg-6">
@@ -16,7 +18,15 @@
                     <hr class="w-25 mx-auto text-primary border-2 opacity-75">
                 </div>
                 
-                <form method="POST" enctype="multipart/form-data" class="needs-validation">
+                <form method="POST" 
+                      enctype="multipart/form-data" 
+                      class="needs-validation"
+                      hx-post="{{ request.path }}"
+                      hx-encoding="multipart/form-data"
+                      hx-disabled-elt="button[type='submit']"
+                      hx-indicator="#etl-loader"
+                      hx-swap="none"
+                      id="uploadForm">
                     {% csrf_token %}
                     
                     <div class="mb-4 text-start">
@@ -38,7 +48,7 @@
                                     </div>
                                 {% else %}
                                     <div class="input-group">
-                                        <input type="{{ field.field.widget.input_type|default:'text' }}" name="{{ field.html_name }}" id="{{ field.id_for_label }}" class="form-control" {% if field.value %}value="{{ field.value }}"{% endif %} {% if field.field.required %}required{% endif %}>
+                                        <input type="type='{{ field.field.widget.input_type|default:'text' }}'" name="{{ field.html_name }}" id="{{ field.id_for_label }}" class="form-control" {% if field.value %}value="{{ field.value }}"{% endif %} {% if field.field.required %}required{% endif %}>
                                     </div>
                                 {% endif %}
                                 
@@ -51,12 +61,45 @@
                     
                     <div class="d-grid mt-4">
                         <button type="submit" class="btn btn-primary btn-lg shadow-sm rounded-3">
-                            <i class="bi bi-cloud-arrow-up-fill me-2"></i>Process ETL Load
+                            <span id="etl-loader" class="htmx-indicator">
+                                <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                Processing ETL...
+                            </span>
+                            <span class="htmx-indicator-inverse">
+                                <i class="bi bi-cloud-arrow-up-fill me-2"></i>Process ETL Load
+                            </span>
                         </button>
                     </div>
                 </form>
                 
-            </div> </div>
+            </div> 
+        </div>
     </div>
 </div>
+
+<script>
+    // SweetAlert trigger on successful HTMX completion
+    document.body.addEventListener('htmx:afterOnLoad', function(evt) {
+        if (evt.detail.xhr.status >= 200 && evt.detail.xhr.status < 300) {
+            Swal.fire({
+                title: 'Success!',
+                text: 'The ETL Data Load has processed successfully.',
+                icon: 'success',
+                confirmButtonColor: '#0d6efd',
+                confirmButtonText: 'Great!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('uploadForm').reset();
+                }
+            });
+        } else {
+            Swal.fire({
+                title: 'Error!',
+                text: 'Something went wrong during processing.',
+                icon: 'error',
+                confirmButtonColor: '#dc3545'
+            });
+        }
+    });
+</script>
 {% endblock content %}
