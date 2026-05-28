@@ -1,5 +1,5 @@
 """
-WSGI config for democsp project.
+WSGI config for sjinvoc project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -8,9 +8,12 @@ https://docs.djangoproject.com/en/6.0/howto/deployment/wsgi/
 """
 
 import os
-
+import sys
 from django.core.wsgi import get_wsgi_application
+path = '/home/cspindia/democsp'
+if path not in sys.path:
+    sys.path.insert(0, path)
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'democsp.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'sjinvoc.settings')
 
 application = get_wsgi_application()
