@@ -75,9 +75,9 @@ def staff_user_login(request):
             )
 
             if user is not None:
-            
-                login(request, user)
-                return redirect("home")
+                if user.is_active:
+                    login(request, user)
+                    return redirect("home")
                 else:
                     return HttpResponse('Disabled account')
 
