@@ -130,3 +130,5 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
+SITE_NAME = 'CSPIndia'

@@ -25,3 +25,7 @@ urlpatterns = [
     path('',include("scribework.urls")),
     path('accounts/',include("accounts.urls"))
 ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+admin.site.site_header = "CSPIndia Admin"
+admin.site.site_title = "CSPINDIA Admin Portal"
+admin.site.index_title = "Welcome to CSPIndia Staff"
