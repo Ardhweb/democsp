@@ -11,6 +11,7 @@ from django.shortcuts import render
 from .forms import ExcelUploadForm
 from entities.models import Agent
 from core.models import Commission
+from django.contrib.admin.views.decorators import staff_member_required
 
 pipeline_configuration = {
         "Agent ID": {
@@ -26,6 +27,7 @@ pipeline_configuration = {
         }
 }
 
+@staff_member_required
 def commission_data_ingestion(request):
     if request.method == "POST":
         form = ExcelUploadForm(request.POST, request.FILES)
